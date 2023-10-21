@@ -1,4 +1,4 @@
-# UIKit Swift
+# UIKit
 
 The goal of this project was to simply layout a UITableView that displays a list of images that open in a new screen
 using Apple's framework UIKit.
