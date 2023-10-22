@@ -10,12 +10,14 @@ import UIKit
 class ViewController: UITableViewController {
     
     var pictures = [String]()
+    var recommendApp = "recommend this app to friends"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Storm Viewer"
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .reply, target: self, action: #selector(recommendTapped))
         
         let fm = FileManager.default
         guard let path = Bundle.main.resourcePath else { return }
@@ -51,6 +53,12 @@ class ViewController: UITableViewController {
             vc.numberOfImages = pictures.count
             navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    @objc func recommendTapped() {
+        let vc = UIActivityViewController(activityItems: [recommendApp], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
     }
 }
 
